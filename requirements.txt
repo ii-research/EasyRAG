@@ -1,0 +1,30 @@
+# EasyRAG Dependencies
+# ====================
+#
+# Installation:
+# 1. Install PyTorch with CUDA 12.1:
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#
+# 2. Install Faiss GPU:
+#    pip install faiss-gpu-cu12==1.13.2
+#
+# 3. Install other dependencies:
+#    pip install -r requirements.txt
+
+# Web UI
+nicegui
+
+# ML/DL
+transformers
+sentence-transformers
+
+# Data processing
+datasets
+pyarrow
+fastparquet
+numpy
+
+# Training utilities
+tqdm
+tensorboard
+psutil

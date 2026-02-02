@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Generated outputs
+results/
+logs/
+outputs/
+checkpoints/
+
+# System
+.DS_Store
+
+# Temporary
+*.tmp.*
+*_backup.py
+
+# State files
+pipeline_state.json
+.recent_workspaces.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Data files (too large for git)
+kilt_data/
+*.faiss
+*.pkl
+
+# Model checkpoints
+*.pt
+*.bin
+*.safetensors
