@@ -13,17 +13,29 @@
 
 ## Table of Contents
 
-- [Key Features](#key-features)
-- [Supported Algorithms](#supported-algorithms)
-- [Screenshots](#screenshots)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Full Training Pipeline](#full-training-pipeline)
-- [Evaluation](#evaluation)
-- [Project Structure](#project-structure)
-- [Citation](#citation)
-- [Acknowledgments](#acknowledgments)
-- [License](#license)
+- [EasyRAG: A Beginner-friendly and Interactive Framework for Retrieval-Augmented Generation](#easyrag-a-beginner-friendly-and-interactive-framework-for-retrieval-augmented-generation)
+  - [Table of Contents](#table-of-contents)
+  - [Key Features](#key-features)
+  - [Supported Algorithms](#supported-algorithms)
+  - [Screenshots](#screenshots)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+  - [Quick Start](#quick-start)
+    - [Live Demo (No Data Download)](#live-demo-no-data-download)
+    - [Web Dashboard](#web-dashboard)
+  - [Full Training Pipeline](#full-training-pipeline)
+    - [Step 1: Download and Prepare Data](#step-1-download-and-prepare-data)
+    - [Step 2–3: Build Retrieval Index](#step-23-build-retrieval-index)
+    - [Step 4: Train Retriever (optional)](#step-4-train-retriever-optional)
+    - [Step 5: Precompute Retrieval](#step-5-precompute-retrieval)
+    - [Step 6: Train Models](#step-6-train-models)
+    - [Step 7: Evaluate](#step-7-evaluate)
+  - [Evaluation](#evaluation)
+  - [Project Structure](#project-structure)
+  - [Citation](#citation)
+  - [Acknowledgments](#acknowledgments)
+  - [License](#license)
 
 ---
 
@@ -55,18 +67,23 @@
 ## Screenshots
 
 <p align="center">
-  <img src="figures/dashboard.png" width="80%" alt="Training Dashboard">
+  <img src="figures/dashboard_demo.jpg" width="80%" alt="Training Dashboard">
   <br><em>Training pipeline dashboard with real-time loss curves and step status indicators.</em>
 </p>
 
 <p align="center">
-  <img src="figures/inference.png" width="80%" alt="Inference Interface">
+  <img src="figures/inference_demo.jpg" width="80%" alt="Inference Interface">
   <br><em>Interactive inference with retrieved passages and Source Pointing visualization.</em>
 </p>
 
 <p align="center">
-  <img src="figures/compare.png" width="80%" alt="Model Comparison">
+  <img src="figures/compare_demo.jpg" width="80%" alt="Model Comparison">
   <br><em>Side-by-side comparison of multiple RAG algorithms on the same query.</em>
+</p>
+
+<p align="center">
+  <img src="figures/live_demo.jpg" width="80%" alt="Live Demo">
+  <br><em>Live Demo comparing Closed-book and Naive RAG using real-time DuckDuckGo web search, no dataset download required.</em>
 </p>
 
 ---
