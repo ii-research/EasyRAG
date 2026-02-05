@@ -88,6 +88,12 @@
 
 ---
 
+## Demo Video
+
+[Video demonstration coming soon]
+
+---
+
 ## Installation
 
 ### Prerequisites
@@ -100,7 +106,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/anonymous/EasyRAG.git
+git clone https://github.com/ii-research/EasyRAG.git
 cd EasyRAG
 
 # 2. Install PyTorch with CUDA 12.1
@@ -324,7 +330,7 @@ EasyRAG/
 ```bibtex
 @inproceedings{easyrag2026,
   title     = {EasyRAG: A Beginner-friendly and Interactive Framework for Retrieval-Augmented Generation},
-  author    = {Anonymous},
+  author    = {Xuanchen Zhou and Haitao Yu and Kaipeng Li},
   booktitle = {Proceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval (Demo Track)},
   year      = {2026}
 }
