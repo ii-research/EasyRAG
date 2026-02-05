@@ -199,6 +199,9 @@ class DirectT5GemmaEvaluator:
             )
 
         generated = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        # Filter out <unused...> tokens that T5Gemma sometimes generates
+        import re
+        generated = re.sub(r'<unused\d+>', '', generated).strip()
         return generated
 
     def evaluate_task(

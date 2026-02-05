@@ -621,10 +621,20 @@ class NaiveRAGT5GemmaTrainer:
                     )
 
                     generated = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+                    # Filter out <unused...> tokens that T5Gemma sometimes generates
+                    import re
+                    generated = re.sub(r'<unused\d+>', '', generated).strip()
                     pred_answer = generated.lower().strip()
 
                     gold_norm = self._normalize_answer(gold_answer)
                     pred_norm = self._normalize_answer(pred_answer)
+
+                    # Debug: print first 3 samples
+                    if total < 3:
+                        print(f"\n  [DEBUG] Sample {total}:")
+                        print(f"    Gold: '{gold_answer}' -> '{gold_norm}'")
+                        print(f"    Pred: '{pred_answer}' -> '{pred_norm}'")
+
                     if gold_norm == pred_norm:
                         correct += 1
                     total += 1

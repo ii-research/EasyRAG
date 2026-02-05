@@ -47,6 +47,7 @@ from .components.inference_panel import InferencePanel
 from .components.evaluate_panel import EvaluatePanel
 from .components.workspace_selector import WorkspaceSelector
 from .components.compare_panel import ComparePanel
+from .components.web_rag_panel import WebRAGPanel
 
 
 # ============================================================================
@@ -460,6 +461,9 @@ def main_page():
             ui.link("Compare", "/compare").classes(
                 "text-white no-underline ml-2"
             )
+            ui.link("Live Demo", "/live-demo").classes(
+                "text-white no-underline ml-2"
+            )
 
         ui.button(
             icon="dark_mode",
@@ -788,6 +792,7 @@ def evaluate_page():
             ui.link("Dashboard", "/").classes("text-white no-underline")
             ui.link("Inference", "/inference").classes("text-white no-underline ml-2")
             ui.link("Compare", "/compare").classes("text-white no-underline ml-2")
+            ui.link("Live Demo", "/live-demo").classes("text-white no-underline ml-2")
             ui.label("|").classes("text-white")
             ui.label("Evaluate").classes("text-h5 text-white")
 
@@ -814,6 +819,7 @@ def inference_page():
             ui.link("Dashboard", "/").classes("text-white no-underline")
             ui.link("Evaluate", "/evaluate").classes("text-white no-underline ml-2")
             ui.link("Compare", "/compare").classes("text-white no-underline ml-2")
+            ui.link("Live Demo", "/live-demo").classes("text-white no-underline ml-2")
             ui.label("|").classes("text-white")
             ui.label("Inference").classes("text-h5 text-white")
 
@@ -844,6 +850,7 @@ def compare_page():
             ui.link("Dashboard", "/").classes("text-white no-underline")
             ui.link("Evaluate", "/evaluate").classes("text-white no-underline ml-2")
             ui.link("Inference", "/inference").classes("text-white no-underline ml-2")
+            ui.link("Live Demo", "/live-demo").classes("text-white no-underline ml-2")
             ui.label("|").classes("text-white")
             ui.label("Compare").classes("text-h5 text-white")
 
@@ -858,6 +865,33 @@ def compare_page():
             default_retriever="",
             default_index="kilt_data/gtr_faiss_index_finetuned",
         )
+
+
+@ui.page("/live-demo")
+def live_demo_page():
+    """Live Demo demo page - simple RAG with web search."""
+    # Dark mode toggle
+    dark = ui.dark_mode()
+    dark.value = False
+
+    # Header
+    with ui.header().classes("items-center justify-between"):
+        with ui.row().classes("items-center gap-4"):
+            ui.link("Dashboard", "/").classes("text-white no-underline")
+            ui.link("Evaluate", "/evaluate").classes("text-white no-underline ml-2")
+            ui.link("Inference", "/inference").classes("text-white no-underline ml-2")
+            ui.link("Compare", "/compare").classes("text-white no-underline ml-2")
+            ui.label("|").classes("text-white")
+            ui.label("Live Demo").classes("text-h5 text-white")
+
+        ui.button(
+            icon="dark_mode",
+            on_click=lambda: dark.toggle(),
+        ).props("flat color=white")
+
+    # Main content - WebRAGPanel
+    with ui.column().classes("w-full max-w-5xl mx-auto p-4"):
+        WebRAGPanel()
 
 
 def main():

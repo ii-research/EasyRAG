@@ -586,6 +586,9 @@ class DirectT5GemmaTrainer:
                     )
 
                     generated = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+                    # Filter out <unused...> tokens that T5Gemma sometimes generates
+                    import re
+                    generated = re.sub(r'<unused\d+>', '', generated).strip()
                     pred_answer = generated.lower().strip()
 
                     gold_norm = self._normalize_answer(gold_answer)

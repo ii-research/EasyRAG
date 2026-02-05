@@ -23,7 +23,7 @@ datasets
 pyarrow
 fastparquet
 numpy
-
+ddgs
 # Training utilities
 tqdm
 tensorboard
