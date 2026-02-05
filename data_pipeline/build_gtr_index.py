@@ -19,6 +19,9 @@ Output:
     └── idx_to_wiki_id.pkl   # Mapping: faiss_index -> wikipedia_id
 """
 
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 import argparse
 import os
 import pickle
@@ -41,7 +44,7 @@ except ImportError:
     print("Error: sentence-transformers not installed. Install with: pip install sentence-transformers")
     exit(1)
 
-from kilt_loader import KILTWikipediaArrow
+from utils.kilt_loader import KILTWikipediaArrow
 
 
 def format_article_text(article: dict, max_paragraphs: int = 5, max_chars: int = 2000) -> str:

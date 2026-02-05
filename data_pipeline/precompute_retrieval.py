@@ -25,6 +25,9 @@ Usage:
     python precompute_retrieval.py --tasks nq --max_samples 100 --output_dir kilt_data/precomputed/
 """
 
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 import argparse
 import os
 import json
@@ -36,9 +39,9 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 from tqdm import tqdm
 
-from kilt_loader import load_filtered_kilt_task, KILTWikipediaArrow
-from gtr_retriever import GTRRetriever
-from multitask_loader import extract_provenance_ids, extract_answer
+from utils.kilt_loader import load_filtered_kilt_task, KILTWikipediaArrow
+from utils.gtr_retriever import GTRRetriever
+from utils.multitask_loader import extract_provenance_ids, extract_answer
 
 
 # KILT tasks for FiD-Light training (3 QA tasks only)

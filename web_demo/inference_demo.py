@@ -289,7 +289,7 @@ class InferenceEngine:
     def _load_t5base_model(self):
         """
         Load T5-base model and tokenizer.
-        Matches train_fidlight_paper.py and train_stochastic_rag.py load_checkpoint().
+        Matches training/train_fidlight_paper.py and training/train_stochastic_rag.py load_checkpoint().
         """
         from pathlib import Path
 
@@ -307,7 +307,7 @@ class InferenceEngine:
     def _load_t5gemma_model(self):
         """
         Load T5Gemma2 model with special handling.
-        Matches train_fidlight_t5gemma.py and train_stochastic_rag_t5gemma.py load_checkpoint().
+        Matches training/train_fidlight_t5gemma.py and training/train_stochastic_rag_t5gemma.py load_checkpoint().
         """
         from pathlib import Path
 
@@ -432,7 +432,7 @@ class InferenceEngine:
 
     def _load_retriever(self):
         """Load GTR retriever with optional finetuned model."""
-        from gtr_retriever import GTRRetriever
+        from utils.gtr_retriever import GTRRetriever
 
         retriever_model = self._retriever_path
         print(f"Loading GTR retriever from {self._index_path}...")
@@ -844,7 +844,7 @@ def demo():
 
     if not os.path.exists(index_path):
         print(f"Index not found: {index_path}")
-        print("Please build the GTR index first using build_gtr_index.py")
+        print("Please build the GTR index first using data_pipeline/build_gtr_index.py")
         return
 
     # Initialize engine

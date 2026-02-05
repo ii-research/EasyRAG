@@ -218,7 +218,7 @@ with open(wiki_path, 'r', encoding='utf-8') as f:
         break
 
 # Or use the wrapper loader
-from kilt_loader import load_kilt_wikipedia
+from utils.kilt_loader import load_kilt_wikipedia
 for article in load_kilt_wikipedia():
     print(article["wikipedia_title"])
     break

@@ -121,13 +121,13 @@ Try RAG instantly using web search — no Wikipedia download or pre-training req
 
 ```bash
 # Interactive mode
-python web_rag_demo.py --interactive --model t5base
+python web_demo/web_rag_demo.py --interactive --model t5base
 
 # Single query
-python web_rag_demo.py --query "Who directed Parasite?" --mode naive_rag --model t5base
+python web_demo/web_rag_demo.py --query "Who directed Parasite?" --mode naive_rag --model t5base
 
 # Compare: Naive RAG vs. Closed-book (Direct)
-python web_rag_demo.py --query "Who directed Parasite?" --mode direct --model t5base
+python web_demo/web_rag_demo.py --query "Who directed Parasite?" --mode direct --model t5base
 ```
 
 ### Web Dashboard
@@ -163,49 +163,49 @@ Download & Preprocess ──> Build Index ──> Train Retriever ──> Precom
 ### Step 1: Download and Prepare Data
 
 ```bash
-python download_kilt_data.py        # Download KILT Wikipedia + NQ, TriviaQA, HotpotQA
-python fix_triviaqa.py              # Fix TriviaQA missing question text
-python filter_kilt_data.py          # Filter samples without valid provenance
+python data_pipeline/download_kilt_data.py    # Download KILT Wikipedia + NQ, TriviaQA, HotpotQA
+python data_pipeline/fix_triviaqa.py          # Fix TriviaQA missing question text
+python data_pipeline/filter_kilt_data.py      # Filter samples without valid provenance
 ```
 
 ### Step 2–3: Build Retrieval Index
 
 ```bash
-python build_wiki_index.py          # Convert Wikipedia to Arrow format
-python build_gtr_index.py           # Build Faiss index with GTR-T5-Base embeddings
+python data_pipeline/build_wiki_index.py    # Convert Wikipedia to Arrow format
+python data_pipeline/build_gtr_index.py     # Build Faiss index with GTR-T5-Base embeddings
 ```
 
 ### Step 4: Train Retriever (optional)
 
 ```bash
-python generate_retrieval_training_data.py    # Generate training triplets
-python train_gtr_retriever.py                 # Fine-tune GTR retriever
+python data_pipeline/generate_retrieval_training_data.py    # Generate training triplets
+python training/train_gtr_retriever.py                      # Fine-tune GTR retriever
 ```
 
 ### Step 5: Precompute Retrieval
 
 ```bash
 # For FiD-Light / Stochastic RAG (top-40 passages)
-python precompute_retrieval.py
+python data_pipeline/precompute_retrieval.py
 
 # For FiD (top-100 passages)
-python precompute_retrieval_for_fid.py
+python data_pipeline/precompute_retrieval_for_fid.py
 ```
 
 ### Step 6: Train Models
 
 | Algorithm | T5-Base | T5Gemma2 |
 |:---|:---|:---|
-| Closed-book (Direct) | `train_direct.py` | `train_direct_t5gemma.py` |
-| Naive RAG | `train_naive_rag.py` | `train_naive_rag_t5gemma.py` |
-| FiD | `train_fid_pure.py` | `train_fid_pure_t5gemma.py` |
-| FiD-Light | `train_fidlight_paper.py` | `train_fidlight_t5gemma.py` |
-| Stochastic RAG | `train_stochastic_rag.py` | `train_stochastic_rag_t5gemma.py` |
+| Closed-book (Direct) | `training/train_direct.py` | `training/train_direct_t5gemma.py` |
+| Naive RAG | `training/train_naive_rag.py` | `training/train_naive_rag_t5gemma.py` |
+| FiD | `training/train_fid_pure.py` | `training/train_fid_pure_t5gemma.py` |
+| FiD-Light | `training/train_fidlight_paper.py` | `training/train_fidlight_t5gemma.py` |
+| Stochastic RAG | `training/train_stochastic_rag.py` | `training/train_stochastic_rag_t5gemma.py` |
 
 Common options:
 
 ```bash
-python train_fidlight_paper.py \
+python training/train_fidlight_paper.py \
     --precomputed_path data/precomputed/all_tasks_train.parquet \
     --output_dir checkpoints/fidlight \
     --steps 50000 \
@@ -217,10 +217,10 @@ python train_fidlight_paper.py \
 
 ```bash
 # Single checkpoint
-python evaluate_fidlight.py --checkpoint checkpoints/fidlight/final --task nq
+python evaluation/evaluate_fidlight.py --checkpoint checkpoints/fidlight/final --task nq
 
 # All checkpoints in a directory
-python evaluate_fidlight_t5base_all_checkpoints.py \
+python evaluation/evaluate_fidlight_t5base_all_checkpoints.py \
     --checkpoint_dir checkpoints/fidlight/
 ```
 
@@ -247,8 +247,38 @@ For detailed experimental results, please refer to the paper.
 
 ```
 EasyRAG/
+├── data_pipeline/                         # Data processing & precomputation
+│   ├── download_kilt_data.py              #   Step 1: Download KILT datasets
+│   ├── fix_triviaqa.py                    #   Step 1: Fix TriviaQA format
+│   ├── filter_kilt_data.py                #   Step 1: Filter invalid samples
+│   ├── build_wiki_index.py                #   Step 2: Build Wikipedia Arrow index
+│   ├── build_gtr_index.py                 #   Step 3: Build Faiss index
+│   ├── generate_retrieval_training_data.py#   Step 4: Generate retriever training data
+│   ├── precompute_retrieval.py            #   Step 5: Precompute passages (top-40)
+│   └── precompute_retrieval_for_fid.py    #   Step 5: Precompute passages (top-100)
+│
+├── training/                              # Model training scripts
+│   ├── train_gtr_retriever.py             #   Step 4: Fine-tune GTR retriever
+│   ├── train_direct.py                    #   Closed-book (T5-Base)
+│   ├── train_naive_rag.py                 #   Naive RAG (T5-Base)
+│   ├── train_fid_pure.py                  #   FiD (T5-Base)
+│   ├── train_fidlight_paper.py            #   FiD-Light (T5-Base)
+│   ├── train_stochastic_rag.py            #   Stochastic RAG (T5-Base)
+│   └── train_*_t5gemma.py                 #   T5Gemma2 variants of each algorithm
+│
+├── evaluation/                            # Evaluation scripts
+│   ├── evaluate_retriever.py              #   Retriever evaluation
+│   ├── evaluate_*.py                      #   Per-algorithm evaluation (single & all checkpoints)
+│   └── evaluate_*_t5gemma*.py             #   T5Gemma2 evaluation variants
+│
+├── utils/                                 # Shared modules
+│   ├── kilt_loader.py                     #   KILT dataset loader
+│   ├── gtr_retriever.py                   #   GTR dense retriever module
+│   └── multitask_loader.py                #   Multi-task training data sampler
+│
 ├── web_demo/                              # Web dashboard (NiceGUI)
 │   ├── app.py                             #   Entry point: python -m web_demo.app
+│   ├── web_rag_demo.py                    #   Standalone live demo (CLI)
 │   ├── pipeline_orchestrator.py           #   Pipeline step management
 │   ├── inference_demo.py                  #   Inference engine
 │   ├── state_monitor.py                   #   Real-time state monitoring
@@ -257,7 +287,7 @@ EasyRAG/
 │   │   ├── step_dialog.py                 #   Step configuration dialogs
 │   │   ├── log_viewer.py                  #   Log viewer & loss charts
 │   │   ├── inference_panel.py             #   Interactive Q&A
-│   │   ├── compare_panel.py              #   Side-by-side model comparison
+│   │   ├── compare_panel.py               #   Side-by-side model comparison
 │   │   ├── evaluate_panel.py              #   Evaluation UI
 │   │   ├── web_rag_panel.py               #   Live demo (web search RAG)
 │   │   └── workspace_selector.py          #   Workspace management
@@ -265,30 +295,7 @@ EasyRAG/
 │       ├── process_manager.py             #   Subprocess management
 │       └── state_io.py                    #   Pipeline state persistence
 │
-├── web_rag_demo.py                        # Standalone live demo (CLI)
-│
-├── download_kilt_data.py                  # Step 1: Download KILT datasets
-├── fix_triviaqa.py                        # Step 1: Fix TriviaQA format
-├── filter_kilt_data.py                    # Step 1: Filter invalid samples
-├── build_wiki_index.py                    # Step 2: Build Wikipedia Arrow index
-├── build_gtr_index.py                     # Step 3: Build Faiss index
-├── generate_retrieval_training_data.py    # Step 4: Generate retriever training data
-├── train_gtr_retriever.py                 # Step 4: Fine-tune GTR retriever
-├── precompute_retrieval.py                # Step 5: Precompute passages (top-40)
-├── precompute_retrieval_for_fid.py        # Step 5: Precompute passages (top-100)
-│
-├── train_direct.py                        # Train: Closed-book (T5-Base)
-├── train_naive_rag.py                     # Train: Naive RAG (T5-Base)
-├── train_fid_pure.py                      # Train: FiD (T5-Base)
-├── train_fidlight_paper.py                # Train: FiD-Light (T5-Base)
-├── train_stochastic_rag.py                # Train: Stochastic RAG (T5-Base)
-├── train_*_t5gemma.py                     # Train: T5Gemma2 variants
-│
-├── evaluate_*.py                          # Evaluation scripts (per algorithm)
-├── gtr_retriever.py                       # GTR dense retriever module
-├── kilt_loader.py                         # KILT dataset loader
-├── multitask_loader.py                    # Multi-task training data sampler
-│
+├── figures/                               # Screenshots for README
 ├── requirements.txt
 └── LICENSE                                # MIT License
 ```

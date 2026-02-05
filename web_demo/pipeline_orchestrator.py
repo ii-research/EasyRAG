@@ -50,30 +50,30 @@ PROJECT_ROOT = Path(__file__).parent.parent
 
 # Training script mapping: (algorithm, model) -> script_name
 TRAIN_SCRIPTS = {
-    ("fidlight", "t5base"): "train_fidlight_paper.py",
-    ("fidlight", "t5gemma"): "train_fidlight_t5gemma.py",
-    ("fid_pure", "t5base"): "train_fid_pure.py",
-    ("fid_pure", "t5gemma"): "train_fid_pure_t5gemma.py",
-    ("stochastic_rag", "t5base"): "train_stochastic_rag.py",
-    ("stochastic_rag", "t5gemma"): "train_stochastic_rag_t5gemma.py",
+    ("fidlight", "t5base"): "training/train_fidlight_paper.py",
+    ("fidlight", "t5gemma"): "training/train_fidlight_t5gemma.py",
+    ("fid_pure", "t5base"): "training/train_fid_pure.py",
+    ("fid_pure", "t5gemma"): "training/train_fid_pure_t5gemma.py",
+    ("stochastic_rag", "t5base"): "training/train_stochastic_rag.py",
+    ("stochastic_rag", "t5gemma"): "training/train_stochastic_rag_t5gemma.py",
 }
 
 # Evaluation script mapping: (algorithm, model, eval_type) -> script_name
 EVAL_SCRIPTS = {
     # Single checkpoint evaluation
-    ("fidlight", "t5base", "single"): "evaluate_fidlight.py",
-    ("fidlight", "t5gemma", "single"): "evaluate_fidlight_t5gemma.py",
-    ("fid_pure", "t5base", "single"): "evaluate_fid_pure.py",
-    ("fid_pure", "t5gemma", "single"): "evaluate_fid_pure_t5gemma.py",
-    ("stochastic_rag", "t5base", "single"): "evaluate_stochastic_rag.py",
-    ("stochastic_rag", "t5gemma", "single"): "evaluate_stochastic_rag_t5gemma.py",
+    ("fidlight", "t5base", "single"): "evaluation/evaluate_fidlight.py",
+    ("fidlight", "t5gemma", "single"): "evaluation/evaluate_fidlight_t5gemma.py",
+    ("fid_pure", "t5base", "single"): "evaluation/evaluate_fid_pure.py",
+    ("fid_pure", "t5gemma", "single"): "evaluation/evaluate_fid_pure_t5gemma.py",
+    ("stochastic_rag", "t5base", "single"): "evaluation/evaluate_stochastic_rag.py",
+    ("stochastic_rag", "t5gemma", "single"): "evaluation/evaluate_stochastic_rag_t5gemma.py",
     # All checkpoints evaluation
-    ("fidlight", "t5base", "all"): "evaluate_fidlight_t5base_all_checkpoints.py",
-    ("fidlight", "t5gemma", "all"): "evaluate_fidlight_t5gemma_all_checkpoints.py",
-    ("fid_pure", "t5base", "all"): "evaluate_fid_pure_all_checkpoints.py",
-    ("fid_pure", "t5gemma", "all"): "evaluate_fid_pure_all_checkpoints_t5gemma.py",
-    ("stochastic_rag", "t5base", "all"): "evaluate_stochastic_rag_all_checkpoints.py",
-    ("stochastic_rag", "t5gemma", "all"): "evaluate_stochastic_rag_t5gemma_all_checkpoints.py",
+    ("fidlight", "t5base", "all"): "evaluation/evaluate_fidlight_t5base_all_checkpoints.py",
+    ("fidlight", "t5gemma", "all"): "evaluation/evaluate_fidlight_t5gemma_all_checkpoints.py",
+    ("fid_pure", "t5base", "all"): "evaluation/evaluate_fid_pure_all_checkpoints.py",
+    ("fid_pure", "t5gemma", "all"): "evaluation/evaluate_fid_pure_all_checkpoints_t5gemma.py",
+    ("stochastic_rag", "t5base", "all"): "evaluation/evaluate_stochastic_rag_all_checkpoints.py",
+    ("stochastic_rag", "t5gemma", "all"): "evaluation/evaluate_stochastic_rag_t5gemma_all_checkpoints.py",
 }
 
 # Algorithm display names
@@ -118,7 +118,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=2,
         name="download_wiki",
         display_name="2.1 Download Wikipedia",
-        script="download_kilt_data.py",
+        script="data_pipeline/download_kilt_data.py",
         default_args={
             "wikipedia-only": True,
         },
@@ -131,7 +131,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=3,
         name="download_tasks",
         display_name="2.2 Download Task Datasets",
-        script="download_kilt_data.py",
+        script="data_pipeline/download_kilt_data.py",
         default_args={
             "tasks-only": True,
         },
@@ -144,7 +144,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=4,
         name="fix_triviaqa",
         display_name="2.3 Fix TriviaQA",
-        script="fix_triviaqa.py",
+        script="data_pipeline/fix_triviaqa.py",
         default_args={},
         required_paths=["output_dir"],
         output_path_key="output_dir",
@@ -155,7 +155,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=5,
         name="filter_data",
         display_name="2.4 Filter Data",
-        script="filter_kilt_data.py",
+        script="data_pipeline/filter_kilt_data.py",
         default_args={
             "tasks": ["nq", "hotpotqa", "triviaqa_support_only"],
             "splits": ["train", "validation"],
@@ -169,7 +169,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=6,
         name="build_wiki_index",
         display_name="3. Build Wiki Index",
-        script="build_wiki_index.py",
+        script="data_pipeline/build_wiki_index.py",
         default_args={
             "format": "arrow",
         },
@@ -182,7 +182,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=7,
         name="build_gtr_index",
         display_name="4. Build GTR Index",
-        script="build_gtr_index.py",
+        script="data_pipeline/build_gtr_index.py",
         default_args={
             "model-path": "sentence-transformers/gtr-t5-base",
             "batch-size": 512,
@@ -197,7 +197,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=8,
         name="generate_retrieval_data",
         display_name="5. Generate Retrieval Training Data",
-        script="generate_retrieval_training_data.py",
+        script="data_pipeline/generate_retrieval_training_data.py",
         default_args={
             "tasks": "all",
             "top_k_negatives": 100,
@@ -213,7 +213,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=9,
         name="train_retriever",
         display_name="6. Train GTR Retriever",
-        script="train_gtr_retriever.py",
+        script="training/train_gtr_retriever.py",
         default_args={
             "learning_rate": 1e-3,
             "steps": 10000,
@@ -235,7 +235,7 @@ STEP_CONFIGS: List[StepConfig] = [
         id=10,
         name="rebuild_index",
         display_name="7. Rebuild Finetuned Index",
-        script="build_gtr_index.py",
+        script="data_pipeline/build_gtr_index.py",
         default_args={
             "batch-size": 512,
         },
@@ -556,9 +556,9 @@ class PipelineOrchestrator:
         if step_id == 11:
             precompute_format = args.get("format", "fidlight")
             if precompute_format == "fid_pure":
-                script = "precompute_retrieval_for_fid.py"
+                script = "data_pipeline/precompute_retrieval_for_fid.py"
             else:
-                script = "precompute_retrieval.py"
+                script = "data_pipeline/precompute_retrieval.py"
 
         # Special case: Step 12 (train_model) - dynamically select script
         if step_id == 12:

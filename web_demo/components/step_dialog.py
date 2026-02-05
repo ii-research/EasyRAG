@@ -30,7 +30,7 @@ MODEL_OPTIONS = {
 # These match the actual argparse defaults in each training script
 # Note: multi_gpu defaults to True (user can disable), bf16 depends on model type
 TRAIN_DEFAULT_ARGS = {
-    # FiD-Light T5-base (train_fidlight_paper.py defaults)
+    # FiD-Light T5-base (training/train_fidlight_paper.py defaults)
     ("fidlight", "t5base"): {
         "learning_rate": 1e-3,
         "total_steps": 50000,
@@ -46,7 +46,7 @@ TRAIN_DEFAULT_ARGS = {
         "multi_gpu": True,
         "bf16": True,
     },
-    # FiD-Light T5Gemma2 (train_fidlight_t5gemma.py defaults)
+    # FiD-Light T5Gemma2 (training/train_fidlight_t5gemma.py defaults)
     ("fidlight", "t5gemma"): {
         "learning_rate": 1e-3,
         "total_steps": 50000,
@@ -64,7 +64,7 @@ TRAIN_DEFAULT_ARGS = {
         "multi_gpu": True,
         "bf16": True,
     },
-    # FiD Pure T5-base (train_fid_pure.py defaults - original FiD paper settings)
+    # FiD Pure T5-base (training/train_fid_pure.py defaults - original FiD paper settings)
     ("fid_pure", "t5base"): {
         "learning_rate": 1e-4,
         "total_steps": 10000,
@@ -81,7 +81,7 @@ TRAIN_DEFAULT_ARGS = {
         "multi_gpu": True,
         "bf16": True,
     },
-    # FiD Pure T5Gemma2 (train_fid_pure_t5gemma.py defaults)
+    # FiD Pure T5Gemma2 (training/train_fid_pure_t5gemma.py defaults)
     ("fid_pure", "t5gemma"): {
         "model_name": "google/t5gemma-2-270m-270m",  # Required for this script!
         "learning_rate": 1e-5,
@@ -100,7 +100,7 @@ TRAIN_DEFAULT_ARGS = {
         "multi_gpu": True,
         "bf16": True,
     },
-    # Stochastic RAG T5-base (train_stochastic_rag.py defaults)
+    # Stochastic RAG T5-base (training/train_stochastic_rag.py defaults)
     # Note: Uses lr_generator/lr_reranker instead of learning_rate
     ("stochastic_rag", "t5base"): {
         "lr_generator": 1e-3,
@@ -121,7 +121,7 @@ TRAIN_DEFAULT_ARGS = {
         "eval_samples": 100,
         "multi_gpu": True,
     },
-    # Stochastic RAG T5Gemma2 (train_stochastic_rag_t5gemma.py defaults)
+    # Stochastic RAG T5Gemma2 (training/train_stochastic_rag_t5gemma.py defaults)
     ("stochastic_rag", "t5gemma"): {
         "lr_generator": 1e-5,
         "lr_reranker": 1e-4,
@@ -553,28 +553,28 @@ class KiltDataConfigDialog:
         2: {
             "title": "2.1 Download Wikipedia",
             "description": "Download KILT Wikipedia knowledge base (~35GB)",
-            "script": "download_kilt_wiki.py",
+            "script": "data_pipeline/download_kilt_data.py",
             "run_label": "Start Download",
             "run_icon": "download",
         },
         3: {
             "title": "2.2 Download Task Datasets",
             "description": "Download KILT task datasets (NQ, HotpotQA, TriviaQA)",
-            "script": "download_kilt_data.py",
+            "script": "data_pipeline/download_kilt_data.py",
             "run_label": "Start Download",
             "run_icon": "download",
         },
         4: {
             "title": "2.3 Fix TriviaQA",
             "description": "Fix TriviaQA data by adding missing question text (output to intermediate dir)",
-            "script": "fix_triviaqa.py",
+            "script": "data_pipeline/fix_triviaqa.py",
             "run_label": "Start Fix",
             "run_icon": "build",
         },
         5: {
             "title": "2.4 Filter Data",
             "description": "Filter out samples without provenance, TriviaQA reads from fixed files",
-            "script": "filter_kilt_data.py",
+            "script": "data_pipeline/filter_kilt_data.py",
             "run_label": "Start Filter",
             "run_icon": "filter_alt",
         },

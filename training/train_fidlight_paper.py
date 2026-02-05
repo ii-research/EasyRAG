@@ -36,9 +36,11 @@ Usage:
     python train_fidlight_paper.py --multi_gpu --batch_size 4
 """
 
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 import argparse
 import json
-import os
 import time
 from datetime import datetime
 from typing import Dict, List, Any, Optional, Tuple
@@ -66,8 +68,8 @@ from transformers.modeling_outputs import BaseModelOutput
 from torch.nn.parallel import data_parallel
 
 # Local imports
-from multitask_loader import MultiTaskKILTLoader, prepare_training_sample, extract_answer
-from gtr_retriever import GTRRetriever
+from utils.multitask_loader import MultiTaskKILTLoader, prepare_training_sample, extract_answer
+from utils.gtr_retriever import GTRRetriever
 
 # Web Demo state reporting (optional - only used when running from web UI)
 try:

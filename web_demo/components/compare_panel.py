@@ -424,7 +424,7 @@ class ComparePanel:
             if not hasattr(self, '_shared_retriever') or self._shared_retriever is None:
                 if index_path:
                     print("Loading shared retriever for comparison...")
-                    from gtr_retriever import GTRRetriever
+                    from utils.gtr_retriever import GTRRetriever
                     self._shared_retriever = await asyncio.get_event_loop().run_in_executor(
                         None,
                         lambda: GTRRetriever(

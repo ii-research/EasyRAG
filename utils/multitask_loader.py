@@ -13,8 +13,8 @@ Key features:
 3. Source pointer target generation: "index: {i1,i2} text: {answer}"
 
 Usage:
-    from multitask_loader import MultiTaskKILTLoader, prepare_training_sample
-    from gtr_retriever import GTRRetriever
+    from utils.multitask_loader import MultiTaskKILTLoader, prepare_training_sample
+    from utils.gtr_retriever import GTRRetriever
 
     loader = MultiTaskKILTLoader(temperature=2.0)
     retriever = GTRRetriever()
@@ -37,7 +37,7 @@ from collections import defaultdict
 
 import numpy as np
 
-from kilt_loader import load_filtered_kilt_task
+from utils.kilt_loader import load_filtered_kilt_task
 
 
 class MultiTaskKILTLoader:

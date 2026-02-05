@@ -34,19 +34,19 @@ EVAL_TYPE_OPTIONS = {
 # Evaluation script mapping (same as pipeline_orchestrator.py)
 EVAL_SCRIPTS = {
     # Single checkpoint evaluation
-    ("fidlight", "t5base", "single"): "evaluate_fidlight.py",
-    ("fidlight", "t5gemma", "single"): "evaluate_fidlight_t5gemma.py",
-    ("fid_pure", "t5base", "single"): "evaluate_fid_pure.py",
-    ("fid_pure", "t5gemma", "single"): "evaluate_fid_pure_t5gemma.py",
-    ("stochastic_rag", "t5base", "single"): "evaluate_stochastic_rag.py",
-    ("stochastic_rag", "t5gemma", "single"): "evaluate_stochastic_rag_t5gemma.py",
+    ("fidlight", "t5base", "single"): "evaluation/evaluate_fidlight.py",
+    ("fidlight", "t5gemma", "single"): "evaluation/evaluate_fidlight_t5gemma.py",
+    ("fid_pure", "t5base", "single"): "evaluation/evaluate_fid_pure.py",
+    ("fid_pure", "t5gemma", "single"): "evaluation/evaluate_fid_pure_t5gemma.py",
+    ("stochastic_rag", "t5base", "single"): "evaluation/evaluate_stochastic_rag.py",
+    ("stochastic_rag", "t5gemma", "single"): "evaluation/evaluate_stochastic_rag_t5gemma.py",
     # All checkpoints evaluation
-    ("fidlight", "t5base", "all"): "evaluate_fidlight_t5base_all_checkpoints.py",
-    ("fidlight", "t5gemma", "all"): "evaluate_fidlight_t5gemma_all_checkpoints.py",
-    ("fid_pure", "t5base", "all"): "evaluate_fid_pure_all_checkpoints.py",
-    ("fid_pure", "t5gemma", "all"): "evaluate_fid_pure_all_checkpoints_t5gemma.py",
-    ("stochastic_rag", "t5base", "all"): "evaluate_stochastic_rag_all_checkpoints.py",
-    ("stochastic_rag", "t5gemma", "all"): "evaluate_stochastic_rag_t5gemma_all_checkpoints.py",
+    ("fidlight", "t5base", "all"): "evaluation/evaluate_fidlight_t5base_all_checkpoints.py",
+    ("fidlight", "t5gemma", "all"): "evaluation/evaluate_fidlight_t5gemma_all_checkpoints.py",
+    ("fid_pure", "t5base", "all"): "evaluation/evaluate_fid_pure_all_checkpoints.py",
+    ("fid_pure", "t5gemma", "all"): "evaluation/evaluate_fid_pure_all_checkpoints_t5gemma.py",
+    ("stochastic_rag", "t5base", "all"): "evaluation/evaluate_stochastic_rag_all_checkpoints.py",
+    ("stochastic_rag", "t5gemma", "all"): "evaluation/evaluate_stochastic_rag_t5gemma_all_checkpoints.py",
 }
 
 

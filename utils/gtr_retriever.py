@@ -8,7 +8,7 @@ Paper: "FiD-Light: Efficient and Effective Retrieval-Augmented Text Generation"
        Hofstatter et al. (2023)
 
 Usage:
-    from gtr_retriever import GTRRetriever
+    from utils.gtr_retriever import GTRRetriever
 
     retriever = GTRRetriever()
     results = retriever.retrieve("Who is the president?", top_k=40)
@@ -37,7 +37,7 @@ try:
 except ImportError:
     raise ImportError("sentence-transformers not installed. Install with: pip install sentence-transformers")
 
-from kilt_loader import KILTWikipediaArrow
+from utils.kilt_loader import KILTWikipediaArrow
 
 
 class GTRRetriever:

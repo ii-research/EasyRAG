@@ -4,7 +4,7 @@ KILT Dataset Loader
 Provides convenient functions to load KILT tasks and KILT Wikipedia datasets.
 
 Usage:
-    from kilt_loader import load_kilt_task, load_kilt_wikipedia, get_kilt_task_names
+    from utils.kilt_loader import load_kilt_task, load_kilt_wikipedia, get_kilt_task_names
 """
 
 from datasets import load_dataset

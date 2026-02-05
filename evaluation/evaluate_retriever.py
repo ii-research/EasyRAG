@@ -26,6 +26,9 @@ Usage:
         --tasks nq
 """
 
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 import argparse
 import json
 import os
@@ -35,9 +38,9 @@ from collections import defaultdict
 import numpy as np
 from tqdm import tqdm
 
-from kilt_loader import load_filtered_kilt_task
-from gtr_retriever import GTRRetriever
-from multitask_loader import extract_provenance_ids
+from utils.kilt_loader import load_filtered_kilt_task
+from utils.gtr_retriever import GTRRetriever
+from utils.multitask_loader import extract_provenance_ids
 
 
 # KILT tasks (3 QA tasks only)
