@@ -34,7 +34,6 @@
     - [Step 7: Evaluate](#step-7-evaluate)
   - [Evaluation](#evaluation)
   - [Project Structure](#project-structure)
-  - [Citation](#citation)
   - [Acknowledgments](#acknowledgments)
   - [License](#license)
 
@@ -42,12 +41,12 @@
 
 ## Key Features
 
-- **5 RAG Algorithms** — Closed-book (Direct), Naive RAG, FiD, FiD-Light, and Stochastic RAG in a unified codebase
+- **5 RAG Algorithms** — LLM-Only Generation, Naive RAG, FiD, FiD-Light, and Stochastic RAG in a unified codebase
 - **First Open-Source FiD-Light & Stochastic RAG** — Faithful reproductions following original papers' algorithms and hyperparameters
 - **Modular 7-Step Pipeline** — From data download to evaluation, each step independently runnable and resumable
 - **Interactive Web Dashboard** — NiceGUI-based UI for pipeline management, real-time training monitoring, and inference
 - **Live Demo** — Instant RAG demonstration with DuckDuckGo web search, no dataset download required
-- **Multi-Backbone** — Supports T5-Base (220M) and T5Gemma2 (540M)
+- **Multi-Backbone** — Supports T5-Base (220M) and T5Gemma2 (270M encoder + 270M decoder)
 - **Hardware Accessible** — Runs on any CUDA-enabled NVIDIA GPU, from a single consumer GPU to multi-GPU clusters
 - **KILT Benchmark** — Evaluation on NQ, TriviaQA, and HotpotQA with EM, F1, KILT-EM, and KILT-F1 metrics
 
@@ -55,13 +54,13 @@
 
 ## Supported Algorithms
 
-| Algorithm | Description | Provenance | Key Technique |
-|:---|:---|:---:|:---|
-| **Closed-book (Direct)** | Answer from parametric knowledge only, no retrieval | — | Baseline lower bound |
-| **Naive RAG** | Concatenate retrieved passages into a single input | — | Standard retrieve-then-read |
-| **FiD** | Encode passages independently, fuse in decoder cross-attention | — | [Izacard & Grave, 2021](https://aclanthology.org/2021.eacl-main.74/) |
-| **FiD-Light** | FiD + encoder compression (top-k vectors) + Source Pointing | Yes | [Hofstatter et al., 2023](https://dl.acm.org/doi/abs/10.1145/3539618.3591687) |
-| **Stochastic RAG** | End-to-end differentiable passage reranking via Gumbel-Top-k | Yes | [Zamani & Bendersky, 2024](https://dl.acm.org/doi/10.1145/3626772.3657923) |
+| Algorithm | Description |
+|:---|:---|
+| **LLM-Only Generation** | Answer from parametric knowledge only, no retrieval |
+| **Naive RAG** | Concatenate top-k retrieved passages into a single input |
+| **[FiD](https://aclanthology.org/2021.eacl-main.74/)** | Encode passages independently, fuse in decoder cross-attention |
+| **[FiD-Light](https://dl.acm.org/doi/abs/10.1145/3539618.3591687)** | FiD + encoder compression (top-k vectors) + Source Pointing |
+| **[Stochastic RAG](https://dl.acm.org/doi/10.1145/3626772.3657923)** | End-to-end differentiable passage reranking via Gumbel-Top-k |
 
 ---
 
@@ -323,19 +322,6 @@ EasyRAG/
 ├── figures/                               # Screenshots for README
 ├── requirements.txt
 └── LICENSE                                # MIT License
-```
-
----
-
-## Citation
-
-```bibtex
-@inproceedings{easyrag2026,
-  title     = {EasyRAG: A Beginner-friendly and Interactive Framework for Retrieval-Augmented Generation},
-  author    = {Xuanchen Zhou and Haitao Yu and Kaipeng Li},
-  booktitle = {Proceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval (Demo Track)},
-  year      = {2026}
-}
 ```
 
 ---
