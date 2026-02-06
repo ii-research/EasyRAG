@@ -18,6 +18,7 @@
   - [Key Features](#key-features)
   - [Supported Algorithms](#supported-algorithms)
   - [Screenshots](#screenshots)
+  - [Demo Video](#demo-video)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -269,6 +270,7 @@ For detailed experimental results, please refer to the paper.
 ## Project Structure
 
 ```
+
 EasyRAG/
 ├── data_pipeline/                         # Data processing & precomputation
 │   ├── download_kilt_data.py              #   Step 1: Download KILT datasets
