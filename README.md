@@ -9,16 +9,20 @@
 
 **EasyRAG** is an open-source framework providing faithful implementations of five RAG algorithms — from simple baselines to advanced methods — with an interactive web dashboard for training, evaluation, and inference. It includes the **first publicly available implementations** of [FiD-Light](https://dl.acm.org/doi/abs/10.1145/3539618.3591687) (encoder compression + Source Pointing) and [Stochastic RAG](https://dl.acm.org/doi/10.1145/3626772.3657923) (Gumbel-Top-k differentiable reranking), designed for accessibility, reproducibility, and education.
 
+## Demo Video
+
+📹 **[Watch Demo Video](https://github.com/ii-research/EasyRAG/releases/tag/demo)** — Showcasing the training pipeline, inference interface, and rapid prototyping features.
+
 ---
 
 ## Table of Contents
 
 - [EasyRAG: A Beginner-friendly and Interactive Framework for Retrieval-Augmented Generation](#easyrag-a-beginner-friendly-and-interactive-framework-for-retrieval-augmented-generation)
+  - [Demo Video](#demo-video)
   - [Table of Contents](#table-of-contents)
   - [Key Features](#key-features)
   - [Supported Algorithms](#supported-algorithms)
   - [Screenshots](#screenshots)
-  - [Demo Video](#demo-video)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -85,12 +89,6 @@
   <img src="figures/live_demo.jpg" width="80%" alt="Live Demo">
   <br><em>Live Demo comparing Closed-book and Naive RAG using real-time DuckDuckGo web search, no dataset download required.</em>
 </p>
-
----
-
-## Demo Video
-
-📹 **[Watch Demo Video](https://github.com/ii-research/EasyRAG/releases/tag/demo)** — Showcasing the training pipeline, inference interface, and rapid prototyping features.
 
 ---
 
