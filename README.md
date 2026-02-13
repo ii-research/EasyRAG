@@ -23,7 +23,7 @@
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
   - [Quick Start](#quick-start)
-    - [Live Demo (No Data Download)](#live-demo-no-data-download)
+    - [Rapid Prototyping (No Data Download)](#rapid-prototyping-no-data-download)
     - [Web Dashboard](#web-dashboard)
   - [Full Training Pipeline](#full-training-pipeline)
     - [Step 1: Download and Prepare Data](#step-1-download-and-prepare-data)
@@ -45,7 +45,7 @@
 - **First Open-Source FiD-Light & Stochastic RAG** — Faithful reproductions following original papers' algorithms and hyperparameters
 - **Modular 7-Step Pipeline** — From data download to evaluation, each step independently runnable and resumable
 - **Interactive Web Dashboard** — NiceGUI-based UI for pipeline management, real-time training monitoring, and inference
-- **Live Demo** — Instant RAG demonstration with DuckDuckGo web search, no dataset download required
+- **Rapid Prototyping** — Instant RAG demonstration with DuckDuckGo web search, no dataset download required
 - **Multi-Backbone** — Supports T5-Base (220M) and T5Gemma2 (270M encoder + 270M decoder)
 - **Hardware Accessible** — Runs on any CUDA-enabled NVIDIA GPU, from a single consumer GPU to multi-GPU clusters
 - **KILT Benchmark** — Evaluation on NQ, TriviaQA, and HotpotQA with EM, F1, KILT-EM, and KILT-F1 metrics
@@ -90,7 +90,7 @@
 
 ## Demo Video
 
-[Video demonstration coming soon]
+📹 **[Watch Demo Video](https://github.com/ii-research/EasyRAG/releases/tag/demo)** — Showcasing the training pipeline, inference interface, and rapid prototyping features.
 
 ---
 
@@ -138,7 +138,7 @@ pip install -r requirements.txt
 
 ## Quick Start
 
-### Live Demo (No Data Download)
+### Rapid Prototyping (No Data Download)
 
 Try RAG instantly using web search — no Wikipedia download or pre-training required:
 
@@ -170,7 +170,7 @@ The dashboard provides five pages:
 | **Evaluate** | Run evaluation on checkpoints with configurable metrics |
 | **Inference** | Interactive Q&A with any trained model, Source Pointing visualization |
 | **Compare** | Side-by-side comparison of multiple algorithms on the same query |
-| **Live Demo** | Closed-book vs. Naive RAG with DuckDuckGo web search |
+| **Rapid Prototyping** | Closed-book vs. Naive RAG with DuckDuckGo web search |
 
 ---
 
