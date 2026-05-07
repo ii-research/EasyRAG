@@ -5,6 +5,7 @@
   <a href="https://nicegui.io/"><img src="https://img.shields.io/badge/UI-NiceGUI-green.svg" alt="NiceGUI"></a>
 </p>
 
+
 # EasyRAG: A Beginner-friendly and Interactive Framework for Retrieval-Augmented Generation
 
 **EasyRAG** is an open-source framework providing faithful implementations of five RAG algorithms — from simple baselines to advanced methods — with an interactive web dashboard for training, evaluation, and inference. It includes the **first publicly available implementations** of [FiD-Light](https://dl.acm.org/doi/abs/10.1145/3539618.3591687) (encoder compression + Source Pointing) and [Stochastic RAG](https://dl.acm.org/doi/10.1145/3626772.3657923) (Gumbel-Top-k differentiable reranking), designed for accessibility, reproducibility, and education.
