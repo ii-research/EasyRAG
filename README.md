@@ -350,6 +350,7 @@ If you find this code useful, please consider citing our paper:
   year      = {2026},
   doi       = {10.1145/3805712.3808385}
 }
+```
 
 ---
 
