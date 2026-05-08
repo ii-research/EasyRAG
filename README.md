@@ -338,6 +338,20 @@ EasyRAG builds upon the following works:
 
 ---
 
+## Citation
+
+If you find this code useful, please consider citing our paper:
+
+```bibtex
+@article{EasyRAG2026,
+  title     = {EasyRAG: A Beginner-friendly and Interactive Framework for Retrieval-Augmented Generation},
+  author    = {Zhou, Xuanchen and Yu, Haitao and Li, Kaipeng and Fang, Yubo},
+  booktitle = {Proceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  year      = {2026},
+  doi       = {10.1145/3805712.3808385}
+}
+
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
